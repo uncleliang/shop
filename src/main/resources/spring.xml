@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+        
+        <!-- 1. 数据源配置 -->
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        	<property name="url" value="jdbc:mysql://localhost:3306/shop?characterEncoding=UTF8&amp;useSSL=false"></property>
+        	<property name="username" value="root"></property>
+        	<property name="password" value="niit1234"></property>
+        	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        </bean>
+
+		<!-- 2. 配置Mybatis SqlSessionFactory 类-->
+        <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <property name="dataSource" ref="dataSource" />
+            <property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"/>
+            <property name="configLocation" value="classpath:mybatis.xml"/>
+            <property name="typeAliasesPackage" value="com.niit.model"/>
+            <property name="plugins"><!--分页插件-->
+                <array>
+                    <bean class="com.github.pagehelper.PageInterceptor"/>
+                </array>
+            </property>
+        </bean>
+
+        <!-- 3. 自动扫描所有的Mapper接口,以便在合适的时候创建SqlSession，自动执行SQL语句-->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="basePackage" value="com.niit.dao" />
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        </bean>
+
+        <!-- 邮箱配置 -->
+        <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+            <!--发送邮件服务器地址-->
+            <property name="host" value="smtp.163.com" />
+            <property name="username" value="uncleliang2020@163.com" />
+            <property name="password" value="niit123456" /><!--smtp的授权码 默认情况下smtp需要授权才能用的-->
+            <property name="port" value="465" />
+
+            <property name="javaMailProperties">
+                <props>
+                    <prop key="mail.smtp.auth">true</prop>
+                    <prop key="mail.smtp.timeout">50000</prop>
+                    <prop key="mail.smtp.starttls.enable">true</prop>
+                    <!-- <prop key="mail.debug">true</prop> -->
+                    <prop key="mail.smtp.socketFactory.port">465</prop>
+                    <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                    <prop key="mail.smtp.socketFactory.fallback">false</prop>
+                </props>
+            </property>
+        </bean>
+</beans>
