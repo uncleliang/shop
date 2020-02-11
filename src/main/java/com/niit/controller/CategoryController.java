@@ -6,6 +6,7 @@ import com.niit.model.Product;
 import com.niit.service.ICategorySecondService;
 import com.niit.service.IProductService;
 import com.niit.util.ConsUtil;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +26,9 @@ import java.util.List;
 @RequestMapping("/category")
 public class CategoryController {
 
+    // 定义logger对象
+    Logger logger  = Logger.getLogger(CategoryController.class);
+
     @Autowired
     ICategorySecondService categorySecondService;
 
@@ -41,7 +45,7 @@ public class CategoryController {
                              @PathVariable("csid") Integer csid,
                              @PathVariable("pageNum") Integer pageNum,
                              ModelMap map){
-
+        logger.debug("方法开始执行");
         // 1.查询 左边的二级菜单列表
         map.addAttribute("csList",categorySecondService.getByCategoryId(cid));
 
@@ -61,7 +65,7 @@ public class CategoryController {
         map.addAttribute("pList",list);
         map.addAttribute("cid",cid);
         map.addAttribute("csid",csid);
-
+        logger.debug("方法执行结束");
         return "category";
     }
 }
