@@ -38,4 +38,9 @@ public class ProductService implements IProductService {
     public List<Product> getByCsid(Integer csid) {
         return dao.getByCsid(csid);
     }
+
+    @Override
+    public Product selectByPrimaryKey(Integer pid) {
+        return dao.selectByPrimaryKey(pid);
+    }
 }

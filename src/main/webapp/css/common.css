@@ -23,7 +23,7 @@ html {
 	_height: 100%;
 	-webkit-text-size-adjust: none;
 	-ms-text-size-adjust: none;
-	_filter: expression(document.execCommand("BackgroundImageCache", false, true));
+	/*_filter: expression(document.execCommand("BackgroundImageCache", false, true));*/
 }
 
 body {
@@ -32,7 +32,7 @@ body {
 	font: 12px tahoma, Arial, Verdana, sans-serif;
 	color: #666666;
 	background-color: #ffffff;
-	_background-image: url(about: blank);
+	/*_background-image: url(about: blank);*/
 	_background-attachment: fixed;
 }
 
@@ -121,14 +121,14 @@ textarea {
 	position: fixed;
 	_position: absolute;
 	top: 0px;
-	_top: expression(documentElement.scrollTop + documentElement.clientHeight - this.offsetHeight);
+	/*_top: expression(documentElement.scrollTop + documentElement.clientHeight - this.offsetHeight);*/
 	left: 0px;
 	z-index: 99;
 	filter: alpha(opacity = 30);
 	-moz-opacity: 0.30;
 	opacity: 0.30;
 	zoom: 1;
-	background: url(../images/dialog_overlay.png);
+	background: url(../image/images/dialog_overlay.png);
 }
 
 /* ---------- Grid ---------- */
@@ -556,7 +556,7 @@ a.button {
 	outline: none;
 	blr: expression(this.hideFocus = true);
 	border: 1px solid #dcdcdc;
-	background: url(../images/common.gif) 0px -30px repeat-x;
+	background: url(../image/images/common.gif) 0px -30px repeat-x;
 }
 
 a.button:hover {
@@ -613,7 +613,7 @@ input.button {
 	outline: none;
 	blr: expression(this.hideFocus = true);
 	border: 1px solid #dcdcdc;
-	background: url(../images/common.gif) 0px -30px repeat-x;
+	background: url(../image/images/common.gif) 0px -30px repeat-x;
 }
 
 @-moz-document url-prefix() {
@@ -678,7 +678,7 @@ div.xxMessage {
 	position: fixed;
 	_position: absolute;
 	top: 25%;
-	_top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(25 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + "px");
+	/*_top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(25 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + "px");*/
 	left: 50%;
 	z-index: 100;
 	overflow: hidden;
@@ -698,15 +698,15 @@ div.xxMessage .messageContent {
 }
 
 div.xxMessage .messagewarnIcon {
-	background: url(../images/common.gif) -60px -330px no-repeat;
+	background: url(../image/images/common.gif) -60px -330px no-repeat;
 }
 
 div.xxMessage .messagesuccessIcon {
-	background: url(../images/common.gif) -30px -360px no-repeat;
+	background: url(../image/images/common.gif) -30px -360px no-repeat;
 }
 
 div.xxMessage .messageerrorIcon {
-	background: url(../images/common.gif) 0px -390px no-repeat;
+	background: url(../image/images/common.gif) 0px -390px no-repeat;
 }
 
 div.xxMessage .messageIframe {
@@ -728,7 +728,7 @@ span.loadingIcon {
 	display: -moz-inline-stack;
 	zoom: 1;
 	*display: inline;
-	background: url(../images/loading_icon.gif) center no-repeat;
+	background: url(../image/images/loading_icon.gif) center no-repeat;
 }
 
 span.loadingBar {
@@ -739,7 +739,7 @@ span.loadingBar {
 	display: -moz-inline-stack;
 	zoom: 1;
 	*display: inline;
-	background: url(../images/loading_bar.gif) center no-repeat;
+	background: url(../image/images/loading_bar.gif) center no-repeat;
 }
 
 /* ---------- Path ---------- */
@@ -759,7 +759,7 @@ div.path li {
 	float: left;
 	padding: 0px 20px 0px 10px;
 	color: #d96663;
-	background: url(../images/common.gif) right -270px no-repeat;
+	background: url(../image/images/common.gif) right -270px no-repeat;
 }
 
 div.path li.last {
@@ -804,7 +804,7 @@ div.header .cart {
 	padding-left: 30px;
 	margin-left: 80px;
 	margin-bottom: 4px;
-	background: url(../images/common.gif) -210px -180px no-repeat;
+	background: url(../image/images/common.gif) -210px -180px no-repeat;
 }
 
 div.header .phone {
@@ -815,7 +815,7 @@ div.header .phone {
 	padding: 0px 10px 0px 26px;
 	white-space: nowrap;
 	border: solid 1px #f0f0f0;
-	background: url(../images/common.gif) -210px -210px no-repeat #fcfcfc;
+	background: url(../image/images/common.gif) -210px -210px no-repeat #fcfcfc;
 }
 
 div.header .phone strong {
@@ -861,7 +861,7 @@ div.header .tagWrap {
 	margin-bottom: 10px;
 	border-left: solid 1px #e4e4e4;
 	border-right: solid 1px #e4e4e4;
-	background: url(../images/common.gif) 0px -120px repeat-x;
+	background: url(../image/images/common.gif) 0px -120px repeat-x;
 }
 
 div.header .tag {
@@ -902,7 +902,7 @@ div.header .search {
 	position: relative;
 	padding: 2px 0px;
 	margin: 5px 5px 5px 10px;
-	background: url(../images/common.gif) 0px -300px no-repeat;
+	background: url(../image/images/common.gif) 0px -300px no-repeat;
 }
 
 div.header .search .keyword {

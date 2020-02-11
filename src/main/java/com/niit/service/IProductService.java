@@ -32,4 +32,12 @@ public interface IProductService {
      * @return
      */
     List<Product> getByCsid(Integer csid);
+
+
+    /**
+     *  按照商品id查询商品信息
+     * @param pid
+     * @return
+     */
+    Product selectByPrimaryKey(Integer pid);
 }

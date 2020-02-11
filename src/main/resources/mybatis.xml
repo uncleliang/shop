@@ -6,5 +6,6 @@
   <settings>
       <setting name="cacheEnabled" value="true"/><!-- 开启缓存 -->
       <setting name="mapUnderscoreToCamelCase" value="true"/><!--下环线自动下划线-->
+      <setting name="logImpl" value="LOG4J"/><!--在日志输出mybatis相关的日志，日志框架选用log4j-->
   </settings>
 </configuration>

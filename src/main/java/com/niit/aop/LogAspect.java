@@ -38,24 +38,22 @@ public class LogAspect {
     public void printLog(){}
 
 
-//    @Before("printLog()") // 在切点对应的方法执行之前执行的代码
-//    public  void before(){
-//
-//        System.out.println("before");
-//    }
-//
-//
-//    @After("printLog()") // 在切点对应的方法执行之后执行的代码
-//    public  void after(){
-//        System.out.println("after");
-//    }
+    @Before("printLog()") // 在切点对应的方法执行之前执行的代码
+    public  void before(){
+        // TODO
+    }
 
 
-    @Around("printLog()")
+    @After("printLog()") // 在切点对应的方法执行之后执行的代码
+    public  void after(){
+        // TODO
+    }
+
+
+    @Around("printLog()") //环绕 "拦截器"
     public  Object around(ProceedingJoinPoint pj){ // 拦截器  pj表示当前正在执行的符合切点的这个方法对象
         Object result=null;
         try {
-
 
             // 类
             Class<?> clazz = pj.getTarget().getClass();
@@ -73,7 +71,7 @@ public class LogAspect {
 
             logger.debug(methodName+"方法开始执行");
 
-            result = pj.proceed();
+            result = pj.proceed(); // 执行当前这个方法
             // 返回值
             String ret = JSON.toJSONString(pj.getArgs());
             logger.debug(methodName+"方法执行结束，IP："+ip+" 方法参数："+agrs+",方法返回值："+ret);
@@ -83,15 +81,15 @@ public class LogAspect {
         return result;
     }
 
-//    @AfterReturning("printLog()") // 在切点对应的方法return之后执行的代码
-//    public  void afterReturning(){
-//        System.out.println("afterReturning");
-//    }
-//
-//    @AfterThrowing("printLog()") // 在切点对应的方法出现Exception之后执行的代码
-//    public  void afterThrowing(){
-//        System.out.println("afterThrowing");
-//    }
+    @AfterReturning("printLog()") // 在切点对应的方法return之后执行的代码
+    public  void afterReturning(){
+        // TODO
+    }
+
+    @AfterThrowing("printLog()") // 在切点对应的方法出现Exception之后执行的代码
+    public  void afterThrowing(){
+        // TODO
+    }
 
     /**
      * 获取IP地址的方法

@@ -44,7 +44,7 @@
                 <ul>
                     <c:forEach items="${pList}" var="p">
                         <li>
-                            <a href="/分页面.htm">
+                            <a href="/product/details/${cid}/${p.pid}">
                                 <img src="/${p.image}" width="170" height="170"  style="display: inline-block;">
 
                                 <span style='color:green'> ${p.pname} </span>
