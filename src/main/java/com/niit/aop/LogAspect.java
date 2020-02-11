@@ -1,11 +1,13 @@
 package com.niit.aop;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.alibaba.fastjson.JSON;
 import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @program: shop
@@ -19,6 +21,10 @@ import org.springframework.stereotype.Component;
 public class LogAspect {
 
     public  Logger logger =null;
+
+
+    @Autowired
+    HttpServletRequest request;
 
     /**
      *   execution(public * *(..)) 所有 public开头的方法
@@ -50,13 +56,27 @@ public class LogAspect {
         Object result=null;
         try {
 
-            logger = Logger.getLogger(pj.getClass());
 
-            logger.debug("方法执行之前");
+            // 类
+            Class<?> clazz = pj.getTarget().getClass();
+
+            // 方法名
+            String methodName = pj.getSignature().getName();
+
+            // 参数列表
+            String agrs = JSON.toJSONString(pj.getArgs());
+
+            // ip地址
+            String ip = getIpAddress(request);
+
+            logger = Logger.getLogger(clazz);
+
+            logger.debug(methodName+"方法开始执行");
 
             result = pj.proceed();
-
-            logger.debug("方法执行之后，类名:"+pj.getTarget().getClass()+",方法名："+pj.getSignature().getName()+",方法参数："+pj.getArgs()+",方法返回值："+result);
+            // 返回值
+            String ret = JSON.toJSONString(pj.getArgs());
+            logger.debug(methodName+"方法执行结束，IP："+ip+" 方法参数："+agrs+",方法返回值："+ret);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
@@ -72,4 +92,29 @@ public class LogAspect {
 //    public  void afterThrowing(){
 //        System.out.println("afterThrowing");
 //    }
+
+    /**
+     * 获取IP地址的方法
+     * @param request   传一个request对象下来
+     * @return
+     */
+    public static String getIpAddress(HttpServletRequest request) {
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        return ip;
+    }
 }
