@@ -1,21 +1,23 @@
 package com.niit.model;
 
+import java.io.Serializable;
+
 /**
  * @program: shop
  * @description: 购物车单行数据
  * @author: hanliang
  * @create: 2020-02-11 15:11
  **/
-public class CartItem {
+public class CartItem implements Serializable {
 
     // 商品信息
     private Product product;
 
     // 商品数量
-    private Integer quantity;
+    private Integer quantity=0;
 
     // 小记金额
-    private Double subTotal;
+    private Double subTotal=0d;
 
     public Product getProduct() {
         return product;

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @program: shop
@@ -62,7 +64,18 @@ public class LogAspect {
             String methodName = pj.getSignature().getName();
 
             // 参数列表
-            String agrs = JSON.toJSONString(pj.getArgs());
+            Object[] argObjs = pj.getArgs();
+            String agrs="";
+            for(int i=0;i<argObjs.length;i++){
+                if(argObjs[i] instanceof  HttpServletRequest ||
+                        argObjs[i] instanceof HttpServletResponse||
+                        argObjs[i] instanceof HttpSession){
+                    continue;
+                }
+
+                agrs += JSON.toJSONString(argObjs[i]);
+            }
+           // String agrs = JSON.toJSONString(pj.getArgs());
 
             // ip地址
             String ip = getIpAddress(request);
@@ -73,8 +86,9 @@ public class LogAspect {
 
             result = pj.proceed(); // 执行当前这个方法
             // 返回值
-            String ret = JSON.toJSONString(pj.getArgs());
-            logger.debug(methodName+"方法执行结束，IP："+ip+" 方法参数："+agrs+",方法返回值："+ret);
+            //String ret = JSON.toJSONString(pj.getArgs());
+           // logger.debug(methodName+"方法执行结束，IP："+ip+" 方法参数："+agrs+",方法返回值："+ret);
+            logger.debug(methodName+"方法执行结束");
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }

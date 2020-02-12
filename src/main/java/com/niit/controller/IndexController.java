@@ -3,6 +3,7 @@ package com.niit.controller;
 import com.niit.model.Category;
 import com.niit.service.ICategoryService;
 import com.niit.service.IProductService;
+import com.niit.service.impl.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -41,4 +42,17 @@ public class IndexController {
 
         return "index";
     }
+
+    @Autowired
+    private RedisService redisService;
+
+    @RequestMapping(value="/getRedis")
+    @ResponseBody
+    public String getJson(String string) throws Exception {
+        redisService.set("test", "test");
+        String value = redisService.get("test");
+        System.out.println(value);
+        return null;
+    }
+
 }

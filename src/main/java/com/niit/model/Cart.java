@@ -1,5 +1,6 @@
 package com.niit.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,14 +10,13 @@ import java.util.Map;
  * @author: hanliang
  * @create: 2020-02-11 15:08
  **/
-public class Cart {
+public class Cart implements Serializable {
 
     // 总金额
-    private Double total;
+    private Double total=0d;
 
     // 购物车中全部的商品信息  key是商品id
     private Map<Integer,CartItem> cartMap = new HashMap<>();
-
 
     /**
      *  添加购物车

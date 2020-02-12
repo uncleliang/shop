@@ -16,7 +16,13 @@
         <div class="topNav clearfix">
             <ul>
                 <li id="headerLogin" class="headerLogin" style="display: list-item;">
-                    <a href="/user/goLogin">登录</a>|
+                    <c:if test="${USER!=null}">
+                        <a href="#">${USER.username}</a>|
+                    </c:if>
+                    <c:if test="${USER == null}">
+                        <a href="/user/goLogin">登录</a>|
+                    </c:if>
+
                 </li>
                 <li id="headerRegister" class="headerRegister" style="display: list-item;">
                     <a href="/user/goRegister">注册</a>|
@@ -40,7 +46,7 @@
             </ul>
         </div>
         <div class="cart">
-            <a  href="../购物车.htm">购物车</a>
+            <a  href="/product/showCart">购物车</a>
         </div>
         <div class="phone">
             客服热线:

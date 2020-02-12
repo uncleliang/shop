@@ -63,7 +63,7 @@
             </dl>
         </div>
         <div class="action">
-
+            <input type="hidden" value="${product.pid}" id="pid">
             <dl class="quantity">
                 <dt>购买数量:</dt>
                 <dd>

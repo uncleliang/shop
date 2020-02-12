@@ -21,4 +21,19 @@ public class ConsUtil {
 
     //  每页显示数据行数
     public static final Integer PAGE_SIZE=12;
+
+    // 购物车cookie名字
+    public static final String COOKIE_CART_NAME = "_cn";
+
+    // 购物车 redis key
+    public static final String KEY_CART = "cart";
+
+    // 购物车 redis 保存时间 月
+    public static final Long TIME_MONTH = 30L;
+
+    // 购物车 redis 保存时间 月
+    public static final Long TIME_WEEK = 7L;
+
+    // 购物车 redis 保存时间 天
+    public static final Long TIME_DAY = 1L;
 }
